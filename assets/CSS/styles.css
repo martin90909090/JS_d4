@@ -16,4 +16,21 @@
 }
 .card img {
   height: 250px;
+}
+
+.restrict {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.restrict p {
+  margin: 10px;
+}
+
+.allowed {
+  color: green;
+}
+
+.n_allowed {
+  color: red;
 }/*# sourceMappingURL=styles.css.map */

@@ -10,7 +10,7 @@ const propiedad_1 = {
     bathrooms: 4,
     price: 500000,
     somke: false,
-    pets: false,
+    pets: true,
     img: 'https://fotos.perfil.com/2018/09/21/trim/950/534/nueva-york-09212018-366965.jpg'
 };
 
@@ -24,7 +24,7 @@ const propiedad_2 = {
     price: 1200,
     somke: true,
     pets: true,
-    img: 'https://fotos.perfil.com/2018/09/21/trim/950/534/nueva-york-09212018-366965.jpg'
+    img: 'https://i.pinimg.com/564x/f5/92/ce/f592ce9780df2e8de81052e93df92542.jpg'
 };
 
 const propiedad_3 = {
@@ -159,3 +159,95 @@ const propiedad_12 = {
 
 const ventas = [propiedad_1, propiedad_2, propiedad_3, propiedad_4, propiedad_5, propiedad_6];
 const alquileres = [propiedad_7, propiedad_8, propiedad_9, propiedad_10, propiedad_11, propiedad_12];
+let ventasElement = document.getElementById('ventas');
+let alquileresElement = document.getElementById('alquileres');
+
+const renderSmoke = (propiedad) => {
+    if (propiedad.smoke) {
+      return '<div class="allowed">Permitido fumar</div>';
+    } else {
+      return '<div class="n_allowed">No se permite fumar</div>';
+    }
+  };  
+
+const renderSmokeIcon = (propiedad) => {
+    if (propiedad.smoke) {
+      return '<i class="fas fa-smoking" style="color: green"></i>';
+    } else {
+        return '<i class="fas fa-smoking-ban" style="color: red"></i>';
+    }
+    }; 
+
+const renderPets = (propiedad) => {
+    if (propiedad.pets) {
+      return '<div class="allowed">Mascotas permitidas</div>';
+    } else {
+      return '<div class="n_allowed">No se permiten mascotas</div>';
+    }
+  };
+
+const renderPetsIcon = (propiedad) => {
+    if (propiedad.pets) {
+      return '<i class="fas fa-paw" style="color: green"></i>';
+    } else {
+        return '<i class="fas fa-ban" style="color: red"></i>';
+    }
+}; 
+
+const render1 = () => {
+    for (let propiedad = 0; propiedad <= 2; propiedad++) {
+        ventasElement.innerHTML += `
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="${ventas[propiedad].img}" alt="${ventas[propiedad].name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${ventas[propiedad].name}</h5>
+                        <p class="card-text">${ventas[propiedad].description}</p>
+                        <p><i class="fas fa-map-marker-alt"></i>${ventas[propiedad].address}</p>
+                        <p><i class="fas fa-bed"></i>${ventas[propiedad].rooms}</p>
+                        <p><i class="fas fa-bath"></i>${ventas[propiedad].bathrooms}</p>
+                        <p><i class="fas fa-dollar-sign"></i>${ventas[propiedad].price}</p>
+                        <div class="restrict">
+                            <p>${renderSmokeIcon(ventas[propiedad])}${renderSmoke(ventas[propiedad])}</p>
+                        </div>
+                        <div class="restrict">
+                            <p>${renderPetsIcon(ventas[propiedad])}${renderPets(ventas[propiedad])}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+};
+
+const render2 = () => {
+    for (let propiedad = 0; propiedad <= 2; propiedad++) {
+        alquileresElement.innerHTML += `
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="${alquileres[propiedad].img}" alt="${alquileres[propiedad].name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${alquileres[propiedad].name}</h5>
+                        <p class="card-text">${alquileres[propiedad].description}</p>
+                        <p><i class="fas fa-map-marker-alt"></i>${alquileres[propiedad].address}</p>
+                        <p><i class="fas fa-bed"></i>${alquileres[propiedad].rooms}</p>
+                        <p><i class="fas fa-bath"></i>${alquileres[propiedad].bathrooms}</p>
+                        <p><i class="fas fa-dollar-sign"></i>${alquileres[propiedad].price}</p>
+                        <div class="restrict">
+                            <p>${renderSmokeIcon(alquileres[propiedad])}${renderSmoke(alquileres[propiedad])}</p>
+                        </div>
+                        <div class="restrict">
+                            <p>${renderPetsIcon(alquileres[propiedad])}${renderPets(alquileres[propiedad])}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+};
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    render1();
+    render2();
+});
+
